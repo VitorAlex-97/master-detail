@@ -6,15 +6,15 @@ import { CategoryFormComponent } from './category-form/category-form.component';
 const routes: Routes = [
   { 
     path: '', 
-    component: CategoryFormComponent 
+    component: CategoryListComponent
   },
   { 
     path: 'new', 
-    component: CategoryListComponent 
+    component:  CategoryFormComponent
   },
   { 
     path: ':id/edit',
-    component: CategoryListComponent
+    component: CategoryFormComponent
   },
 ];
 
