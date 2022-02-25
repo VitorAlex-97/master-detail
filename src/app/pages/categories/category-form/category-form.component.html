@@ -63,11 +63,18 @@
         </div>
     </div>
 
+    <div class="alert alert-danger mt-2" *ngIf="serverErrorMessage">
+        <strong>Erro no Servidor</strong>
+        <ul>
+            <li *ngFor="let error of serverErrorMessage">{{error}}</li>
+        </ul>
+    </div>
     <button 
         type="submit" 
         class="btn btn-primary mt-4 float-right"
         [disabled]="submittingForm || categoryForm.invalid"
     >
-    Salvar</button>
+    Salvar
+    </button>
 
 </form>
