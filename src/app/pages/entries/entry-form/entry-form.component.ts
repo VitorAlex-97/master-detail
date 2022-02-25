@@ -6,6 +6,8 @@ import { Entry } from './../shared/entry.model';
 import { EntryService } from '../shared/entry.service';
 import { throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { Category } from '../../categories/shared/category.model';
+import { CategoryService } from '../../categories/shared/category.service';
 
 @Component({
   selector: 'app-entry-form',
@@ -20,19 +22,33 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   serverErrorMessage: string[];
   submittingForm: boolean = false;
   entry: Entry = new Entry();
+  
+  imaskConfig = {
+    mask: Number,
+    scale: 2,
+    signed: false,
+    thousandsSeparator: '.',
+    padFractionalZeros: true,
+    normalizeZeros: true,
+    radix: ','
+  };
+
+  categories: Category[];
 
   constructor(
     private entryService: EntryService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private categoryService: CategoryService
   ) { }
 
   ngOnInit(){
     this.setCurrentAction();
     this.buildEntryForm();
     this.loadEntry();
+    this.loadCategories();
   }
 
   ngAfterContentChecked() {     
@@ -50,6 +66,17 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
 
   }
 
+  get typeOptions(): Array<any> {
+    return Object.entries(Entry.types).map(
+      ([value, text]) => {
+        return {
+          value: value,
+          text: text
+        }
+      }
+    )
+  }
+
   private setCurrentAction() {
     // entries/edit ou cate
     let action: string;
@@ -63,10 +90,10 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
       id: [null],
       name: [null, [Validators.required, Validators.minLength(3)]],
       description: [null],
-      type: [null, [Validators.required]],
+      type: ['expense', [Validators.required]],
       amount: [null,  [Validators.required]],
       date: [null,  [Validators.required]],
-      paid: [null,  [Validators.required]],
+      paid: [true,  [Validators.required]],
       categoryId: [null,  [Validators.required]]
     });
   }
@@ -148,6 +175,12 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
       error: (error) => this.actionForError(error),
       complete: () => {}
     });
+  }
+
+  private loadCategories() {
+    this.categoryService.getAll().subscribe(
+      (resp) => this.categories = resp
+    );
   }
 
 

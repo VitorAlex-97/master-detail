@@ -41,7 +41,7 @@
             </td>
             <td class="text-right">
                 <strong [class.text-success]="entry.type == 'revenue'" [class.text-danger]="entry.type == 'expense'">
-                    {{entry.amount}}
+                    {{entry.amount | currency:'R$ '}}
                 </strong><br>
                 <span class="badge badge-light">{{entry.paidText}}</span>
             </td>

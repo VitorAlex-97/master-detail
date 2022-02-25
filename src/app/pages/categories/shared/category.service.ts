@@ -59,11 +59,11 @@ export class CategoryService {
 
   
   private jsonDataToCategories(jsonData: any []): Category[] {
-    let category: Category[] = [];
+    let categories: Category[] = [];
     jsonData.forEach((element) => {
-      category.push(element as Category);
+      categories.push(element as Category);
     });
-    return category;
+    return categories;
   }
 
   private jsonDataToCategory(jsonData: any): Category {
