@@ -5,10 +5,10 @@ export class Entry {
         public id?: number,
         public name?: string,
         public description?: string,
-        public type?: number,
-        public amount?: number,
-        public paid?: boolean,
+        public type?: string,
+        public amount?: string,
         public date?: string,
+        public paid?: boolean,
         public categoryId?: number,
         public category?: Category
     ) {}
@@ -16,9 +16,9 @@ export class Entry {
     static typies = {
         expense: 'Despesa',
         renevue: 'Receita'
-    }
+    };
 
-    getPaidText(): string {
+    get paidText(): string {
         return this.paid ? 'Pago' : 'Pendente';
     }
 }
