@@ -47,7 +47,6 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
     } else {
       this.updateCategory()
     }
-
   }
 
   private setCurrentAction() {
@@ -101,6 +100,8 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
 
   private createCategory() {
     const category: Category = Object.assign(new Category(), this.categoryForm.value);
+
+    console.log(category);
 
     this.categoryService.create(category).subscribe({
       next: (category) => {

@@ -119,8 +119,9 @@
                 <label for="paid">Pago</label>
 
                 <div class="btn-goup">
-                    <label 
+                    <label
                         [class.active]="entryForm.get('paid')?.value == true" 
+                        [classList]=""
                         class="btn btn-outline-info"
                         (click)="entryForm.get('paid')?.setValue(true)"
                     >
