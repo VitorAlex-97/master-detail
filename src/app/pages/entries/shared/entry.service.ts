@@ -2,7 +2,7 @@ import { Category } from './../../categories/shared/category.model';
 import { CategoryService } from './../../categories/shared/category.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, flatMap, map, mergeMap, Observable, throwError } from 'rxjs';
+import { catchError, map, mergeMap, Observable, throwError } from 'rxjs';
 
 import { Entry } from './entry.model';
 
