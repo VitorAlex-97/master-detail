@@ -15,7 +15,7 @@
 <div class="row mb-4">
     <div class="col-md">
         <h1 class="h2 border-left pl-2">
-            Formulário de categorias
+            {{pageTitle}}
         </h1>
     </div>
     <div class="col-md">
@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<form [formGroup]="categoryForm" (submit)="submitForm()">
+<form [formGroup]="resourceForm" (submit)="submitForm()">
 
     <div class="card">
         <div class="card-header">
@@ -39,11 +39,11 @@
                         id="name"
                         formControlName="name"
                     >
-                    <div class="text-danger" *ngIf="categoryForm.get('name') && categoryForm.get('name')?.touched">
-                        <div *ngIf="categoryForm.get('name')?.errors?.['required']">
+                    <div class="text-danger" *ngIf="resourceForm.get('name') && resourceForm.get('name')?.touched">
+                        <div *ngIf="resourceForm.get('name')?.errors?.['required']">
                             nome é obrigatório
                         </div>
-                        <div *ngIf="categoryForm.get('name')?.errors?.['minlength']">
+                        <div *ngIf="resourceForm.get('name')?.errors?.['minlength']">
                             deve ter no mínimo 3 caracteres
                         </div>
                     </div>
@@ -70,7 +70,7 @@
     <button 
         type="submit" 
         class="btn btn-primary mt-4 float-right"
-        [disabled]="submittingForm || categoryForm.invalid"
+        [disabled]="submittingForm || resourceForm.invalid"
     >
     Salvar
     </button>
