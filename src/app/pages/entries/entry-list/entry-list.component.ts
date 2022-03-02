@@ -11,13 +11,16 @@ export class EntryListComponent implements OnInit {
 
   entries: Entry[] = [];
 
+  key = 'date';
+  reverse = true;
+
   constructor(
     private entryService: EntryService
   ) { }
 
   ngOnInit() {
     this.entryService.getAll().subscribe({
-      next: (resp) => this.entries = resp,
+      next: (resp) => this.entries = resp.sort((a, b) => Number(b.id) - Number(a.id)),
       error: (error) => {
         alert('Erro ao carregar a lista');
         console.log(error);
