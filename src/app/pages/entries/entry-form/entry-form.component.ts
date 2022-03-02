@@ -100,7 +100,7 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
 
   private loadEntry() {
     if(this.currentAction == "edit") {
-      const id = Number(this.route.snapshot.paramMap.get('id'));
+      const id = this.route.snapshot.params['id'];
       console.log(id);
       const errorIdZero = throwError(() => {
         const error: any = new Error(`request id is null`);
