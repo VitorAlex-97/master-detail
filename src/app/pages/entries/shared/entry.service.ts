@@ -32,4 +32,17 @@ export class EntryService extends BaseResourceService<Entry> {
       })
     );
   }
+
+  /*
+  
+  private setCategoryAndSendToServer(entry: Entry, sendFn: any): Observable<Entry> {
+    return this.categoryService.getById(Number(entry.categoryId)).pipe(
+      mergeMap((category) => {
+        entry.category = category;
+        return sendFn(entry)
+      })
+    )
+  }
+  
+  */
 }

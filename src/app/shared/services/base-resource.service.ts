@@ -19,6 +19,7 @@ export abstract class  BaseResourceService<T extends BaseResourceModel> {
     getAll(): Observable<T[]> {
         return this.http.get(this.apiPath).pipe(
             catchError(this.handleError),
+            //'this' reference to the context of the Resource T
             map(this.jsonDataToResources.bind(this))
         );
       }
@@ -27,6 +28,7 @@ export abstract class  BaseResourceService<T extends BaseResourceModel> {
         const url = `${this.apiPath}/${id}`;
     
         return this.http.get(url).pipe(
+            //'this' reference to the context of the Resource T.
             map(this.jsonDataToResource.bind(this)),
             catchError(this.handleError)
         )
