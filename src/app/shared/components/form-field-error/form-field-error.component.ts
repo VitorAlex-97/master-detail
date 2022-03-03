@@ -13,7 +13,7 @@ import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 export class FormFieldErrorComponent implements OnInit {
 
   @Input('form-control') formControl: AbstractControl | null;
-  @Input('error-message') errorMessageEnv: string;
+  @Input('error-messages') errorMessages: {required?: string, minLength?: string} | null;
 
 
   constructor() { }
@@ -22,28 +22,25 @@ export class FormFieldErrorComponent implements OnInit {
 
   }
 
-  public get errorMessage(): string | null {
+  public get errorMessage(): string | undefined {
     
     if(this.mustShowMessageError())
       return this.getErrorMessage();
     else
-      return null;
+      return undefined;
   }
 
   private mustShowMessageError(): boolean {
     return this.formControl ? this.formControl.invalid && this.formControl.touched : false;
   }
 
-  private getErrorMessage(): string | null {
+  private getErrorMessage(): string | undefined {
     if(this.formControl?.errors?.['required'])
-      return this.errorMessageEnv;
+      return this.errorMessages?.required;
 
-    else if(this.formControl?.errors?.['minlength']) {
-      const requiredLength = this.formControl?.errors?.['minlength']?.requiredLength;
+    else if(this.formControl?.errors?.['minlength'])
+      return this.errorMessages?.minLength;
 
-      return `deve ter no mínimo ${requiredLength} caracteres`;
-    }
-
-    return null;
+    return undefined;
   }
 }

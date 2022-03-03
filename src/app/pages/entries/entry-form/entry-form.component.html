@@ -45,7 +45,10 @@
                     >
                     <app-form-field-error
                         [form-control]="resourceForm.get('name')"
-                        [error-message]="'lançamento é obrigatório'"
+                        [error-messages]="{
+                            required:'lançamento é obrigatório', 
+                            minLength:'deve ter no mínimo 3 caracteres'
+                        }"
                     ></app-form-field-error>                    
                 </div>
 
@@ -67,7 +70,7 @@
                     </div>
                     <app-form-field-error
                         [form-control]="resourceForm.get('amount')"
-                        [error-message]="'valor é obrigatório'"
+                        [error-messages]="{required:'valor é obrigatório'}"
                     ></app-form-field-error> 
                 </div>
 
@@ -85,7 +88,7 @@
                     </p-calendar>
                     <app-form-field-error
                         [form-control]="resourceForm.get('date')"
-                        [error-message]="'data é obrigatória'"
+                        [error-messages]="{required:'data é obrigatória'}"
                     ></app-form-field-error>
                 </div>
             </div>
@@ -123,7 +126,7 @@
 
                 <app-form-field-error
                     [form-control]="resourceForm.get('categoryId')"
-                    [error-message]="'categoria é obrigatória'"
+                    [error-messages]="{required:'categoria é obrigatória'}"
                 ></app-form-field-error>
             </div>
 
@@ -138,13 +141,9 @@
                 >
             </div>
         </div>
-
-        <div class="alert alert-danger mt-2" *ngIf="serverErrorMessage">
-            <strong>Erro no Servidor</strong>
-            <ul>
-                <li *ngFor="let error of serverErrorMessage">{{error}}</li>
-            </ul>
-        </div>
+        <app-server-error-messages
+            [server-error-messages]="serverErrorMessage"
+        ></app-server-error-messages>
     </div>
 
     <div class="row">
