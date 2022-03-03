@@ -12,12 +12,7 @@ export abstract class BaseResourceListComponent<T extends BaseResourceModel> imp
   ) { }
 
   ngOnInit() {
-    this.resourceService.getAll().subscribe({
-      next: (resp) => this.resources = resp.sort((a, b) => Number(b.id) - Number(a.id)),
-      error: (error) => {
-        alert('Erro ao carregar a lista');
-        console.log(error);
-    }})
+    this.loadResources();
   }
 
   deleteResource(resource: any) {
@@ -29,6 +24,15 @@ export abstract class BaseResourceListComponent<T extends BaseResourceModel> imp
         error: () => alert('Erro ao tentar excluir')
       })
     }
+  }
+
+  private loadResources() {
+    this.resourceService.getAll().subscribe({
+      next: (resp) => this.resources = resp.sort((a, b) => Number(b.id) - Number(a.id)),
+      error: (error) => {
+        alert('Erro ao carregar a lista');
+        console.log(error);
+    }});
   }
 
 }
