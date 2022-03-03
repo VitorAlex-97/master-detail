@@ -5,16 +5,12 @@
     ]"
 ></app-bread-crumb>
 
-<div class="row mb-4">
-    <div class="col-md">
-        <h1 class="h2 border-left pl-2">
-            {{pageTitle}}
-        </h1>
-    </div>
-    <div class="col-md">
-        <a routerLink="/categories" class="btn btn-light float-right "><< voltar</a>
-    </div>
-</div>
+<app-page-header
+    page-tile="{{ pageTitle }}"
+    button-class="btn-light"
+    button-link="/categories"
+    button-text="<< voltar"
+></app-page-header>
 
 <form [formGroup]="resourceForm" (submit)="submitForm()">
 
