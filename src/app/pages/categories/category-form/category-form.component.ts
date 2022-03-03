@@ -33,6 +33,6 @@ export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
     const categoryName = this.resource.name || '';
 
     return 'Editando Categoria: ' + categoryName;
-}
+  }
   
 }
