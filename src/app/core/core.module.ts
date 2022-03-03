@@ -19,6 +19,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   imports: [
     CommonModule,
     BrowserModule,
+    AppRoutingModule,
     RouterModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDatabase),
