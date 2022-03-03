@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {CalendarModule} from 'primeng/calendar';
 import { IMaskModule } from 'angular-imask';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FormFieldErrorComponent } from 'src/app/shared/components/form-field-error/form-field-error.component';
 
 
 @NgModule({

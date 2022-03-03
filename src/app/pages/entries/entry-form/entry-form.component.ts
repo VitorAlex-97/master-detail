@@ -79,7 +79,9 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
     });
   }
 
-
+  get nameControl() {
+    return this.resourceForm.get('name');
+  }
 
 
 }

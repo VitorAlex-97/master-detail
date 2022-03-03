@@ -29,11 +29,9 @@
                         <option *ngFor="let type of typeOptions" [ngValue]="type.value">{{ type.text }}</option>
                     </select>
 
-                    <div class="text-danger" *ngIf="resourceForm.get('type') && resourceForm.get('type')?.touched">
-                        <div *ngIf="resourceForm.get('type')?.errors?.['required']">
-                            tipo é obrigatório
-                        </div>
-                    </div>
+                    <app-form-field-error
+                        [form-control]="$any(resourceForm.get('type'))"
+                    ></app-form-field-error>
                 </div>
 
                 <!-- name -->
@@ -45,14 +43,10 @@
                         id="name"
                         formControlName="name"
                     >
-                    <div class="text-danger" *ngIf="resourceForm.get('name') && resourceForm.get('name')?.touched">
-                        <div *ngIf="resourceForm.get('name')?.errors?.['required']">
-                            lançamento é obrigatório
-                        </div>
-                        <div *ngIf="resourceForm.get('name')?.errors?.['minlength']">
-                            deve ter no mínimo 3 caracteres
-                        </div>
-                    </div>
+                    <app-form-field-error
+                        [form-control]="resourceForm.get('name')"
+                        [error-message]="'lançamento é obrigatório'"
+                    ></app-form-field-error>                    
                 </div>
 
                 <!-- amount -->
@@ -71,11 +65,10 @@
                             [imask]="imaskConfig"
                         >
                     </div>
-                    <div class="text-danger" *ngIf="resourceForm.get('amount') && resourceForm.get('amount')?.touched">
-                        <div *ngIf="resourceForm.get('amount')?.errors?.['required']">
-                            valor é obrigatório
-                        </div>
-                    </div>
+                    <app-form-field-error
+                        [form-control]="resourceForm.get('amount')"
+                        [error-message]="'valor é obrigatório'"
+                    ></app-form-field-error> 
                 </div>
 
                 <!-- date -->
@@ -87,16 +80,13 @@
                         inputStyleClass="form-control"
                         dataType="string"
                         dateFormat="dd/mm/yy"
-                        [showButtonBar]="true"
-                       
+                        [showButtonBar]="true"    
                     >
                     </p-calendar>
-                    <div class="text-danger" *ngIf="resourceForm.get('date') && resourceForm.get('date')?.touched">
-                        <div *ngIf="resourceForm.get('date')?.errors?.['required']">
-                            data é obrigatório
-                        </div>
-                    </div>
-
+                    <app-form-field-error
+                        [form-control]="resourceForm.get('date')"
+                        [error-message]="'data é obrigatória'"
+                    ></app-form-field-error>
                 </div>
             </div>
         </div>
@@ -113,23 +103,13 @@
                         [classList]=""
                         class="btn btn-outline-info"
                         (click)="resourceForm.get('paid')?.setValue(true)"
-                    >
-                    Pago
-                    </label>
+                    >Pago</label>
                     
                     <label 
                         [class.active]="resourceForm.get('paid')?.value == false" 
                         class="btn btn-outline-info"
                         (click)="resourceForm.get('paid')?.setValue(false)"
-                    >
-                    Pendente
-                    </label>
-                </div>
-
-                <div class="text-danger" *ngIf="resourceForm.get('paid') && resourceForm.get('paid')?.touched">
-                    <div *ngIf="resourceForm.get('paid')?.errors?.['required']">
-                        valor é obrigatório
-                    </div>
+                    >Pendente</label>
                 </div>
             </div>
 
@@ -141,11 +121,10 @@
                     <option *ngFor="let category of categories" [ngValue]="category.id">{{ category.name }}</option>
                 </select>
 
-                <div class="text-danger" *ngIf="resourceForm.get('categoryId') && resourceForm.get('categoryId')?.touched">
-                    <div *ngIf="resourceForm.get('categoryId')?.errors?.['required']">
-                        categoria é obrigatório
-                    </div>
-                </div>
+                <app-form-field-error
+                    [form-control]="resourceForm.get('categoryId')"
+                    [error-message]="'categoria é obrigatória'"
+                ></app-form-field-error>
             </div>
 
             <!-- description -->
