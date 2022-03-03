@@ -1,5 +1,5 @@
-import { AfterContentChecked, OnInit, Injector, Component, Injectable, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AfterContentChecked, OnInit, Injector, Injectable, Inject } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { throwError } from 'rxjs';
