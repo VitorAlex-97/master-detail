@@ -18,14 +18,14 @@
                 <label for="month" id="month">Mês</label>
                 <select name="month" id="month" class="form-control" #month>
                     <option value="">Selecione um mês</option>
-                    <option *ngFor="let iterator of months" value="iterator.value">{{ iterator.month }}</option>
+                    <option *ngFor="let iterator of months" value="{{iterator.value}}">{{ iterator.month }}</option>
                 </select>
             </div>
             <div class="form-group col-md-5">
                 <label for="year" id="year">Ano</label>
                 <select name="year" id="year" class="form-control" #year>
                     <option value="">Selecione um ano</option>
-                    <option *ngFor="let iterator of years" value="iterator.year"> {{ iterator.year }}</option>
+                    <option *ngFor="let iterator of years" value="{{iterator.year}}"> {{ iterator.year }}</option>
                 </select>
             </div>
         </div>
@@ -47,7 +47,7 @@
            TOTAL DE RECEITAS
         </div>
         <div class="card-body">
-            <div class="card-title">1500</div>
+            <div class="card-title">{{ revenueTotal }}</div>
         </div>
     </div>
     <div class="card text-center text-white bg-danger">
@@ -55,7 +55,7 @@
            TOTAL DE DESPESAS
         </div>
         <div class="card-body">
-            <div class="card-title">500</div>
+            <div class="card-title">{{ expenseTotal }}</div>
         </div>
     </div>
     <div class="card text-center text-white bg-info">
@@ -63,7 +63,7 @@
            SALDO
         </div>
         <div class="card-body">
-            <div class="card-title">1000</div>
+            <div class="card-title">{{ balance }}</div>
         </div>
     </div>
 </div>
@@ -72,9 +72,9 @@
 
 <div class="row my-5">
     <div class="col-md-6">
-        GRÁFICO DE RECEITAS
+        <p-chart type="bar" [data]="revenueChartData" [options]="chartOptions"></p-chart>
     </div>
     <div class="col-md-6">
-        GRÁFICO DE DESPESAS
+        <p-chart type="bar" [data]="expenseChartData" [options]="chartOptions"></p-chart>
     </div>
 </div>
